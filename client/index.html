@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockPaperScissors</title>
+    <link rel="icon" href="img/logo.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <div id="user">
+        <i class="fas fa-sync-alt"></i> &nbsp; &nbsp; 
+        <h3>Hi, <span>Anonymous</span></h3>
+    </div>
+
+
+    <div id='modal-bck'>
+        <div id="log-in">
+            <form>
+                <input id="username" type="text" placeholder="Enter username...">               
+                <button><i class="fas fa-paper-plane"></i></button>  
+            </form>
+        </div>
+    </div>
+
+
+
+    <h1> <span><i class="fas fa-hand-rock rock-style"></i>&nbsp;Rock</span>&nbsp;<span><i class="fas fa-hand-paper paper-style"></i>&nbsp;Paper</span>&nbsp;<span><i class="fas fa-hand-scissors scissors-style"></i>&nbsp;Scissors</span></h1>
+    
+    <section id="result">
+        <p>Total rounds wins:</p>
+        <div>
+            <div><span id="user-tag">User1:</span><span id="user-sc">0</span></div>
+            <div> <span id="opponent-tag">User2: </span><span id="opponent-sc">0</span></div>
+        </div>
+
+    </section>
+    
+    <section id="wrapper">
+        <div id="game">
+            <div id="display-game">
+                <ul>
+                    
+                </ul>
+            </div>
+            <div id="ctrl-game">
+                <span class="rock-style" id="rock"><i class="fas fa-hand-rock"></i></span>
+                <span class="paper-style" id="paper"><i class="fas fa-hand-paper"></i></span>
+                <span class="scissors-style" id="scissors"><i class="fas fa-hand-scissors"></i></span>
+            </div>
+
+        </div>
+        <div id="chat">
+            <div id="display-chat">
+               <ul>
+               </ul>
+            </div>
+            <div id="ctrl-chat">
+                <form>
+                    <input type="text" name="" id="text-inp" placeholder="Type text...">
+                    <button><i id="btn" class="fas fa-paper-plane"></i></button>
+                    <!-- <input type="submit" value="Send Msg"> -->
+                </form>
+
+            </div>
+        </div>
+
+    </section>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
+
