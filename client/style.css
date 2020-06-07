@@ -30,6 +30,17 @@
     display: none;
 }
 
+#count-bck {
+    background-color:  #c4c4c494;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    display: none;
+}
+
 #log-in {
     left: 0;
     right: 0;
@@ -47,6 +58,19 @@
     -webkit-box-shadow: 10px 10px 11px -8px rgba(0,0,0,0.45);
     -moz-box-shadow: 10px 10px 11px -8px rgba(0,0,0,0.45);
     box-shadow: 10px 10px 11px -8px rgba(0,0,0,0.45);
+}
+
+#count-box{
+    left: 0;
+    right: 0;
+    /* padding: 0 2rem; */
+    position: absolute;
+    background-color: rgb(255, 255, 255) !important;
+    width: 25rem;
+    height: 10rem;
+    margin: 0 auto;
+    z-index: 10;
+    margin-top: 2rem; 
 }
 
 #result{

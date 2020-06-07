@@ -14,21 +14,12 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 let waitingPlayer = null;
+let waitU = ''
 
 io.on("connection", (sock) => {
-// console.log('someon conected')
-
 
     if (waitingPlayer) {
-        // waitingPlayer.on("username", (user) => {
-        //     console.log('waiting ' + user)
-        // });
-        
-        // sock.on("username", (user) => {
-        //     console.log('sok ' + user)
-        // });
-        
-        new Game(waitingPlayer, sock)
+        new Game(waitingPlayer, sock, waitU)
         waitingPlayer = null;
     } else {
         waitingPlayer = sock;
@@ -40,20 +31,13 @@ io.on("connection", (sock) => {
         io.emit("message", text);
     });
 
-    sock.on("username", (user) => {
-        io.emit("username", user)
-    });
-
-    // server dobija poteze od soketa (sock.on) i salje ih svima na serveru (io.emit)
-    // sock.on("game", (turn) => {
-    //     io.emit("game", turn);
-    // });
 });
 
 server.on("error", (err) => {
 console.error("Error:", err);
 });
 
-server.listen(8001, () => {
-console.log("PRS started on 8080");
+
+server.listen(8180, () => {
+console.log("PRS started on 8181");
 });

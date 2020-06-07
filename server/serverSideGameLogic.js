@@ -3,6 +3,7 @@ class Game{
         this.players = [pl1, pl2]
         this.turns = [null, null]
         this.userNames = [null, null]
+        this.score = [0,0]
 
         this.sendMsgToAll("Game Starts!")
 
@@ -11,15 +12,17 @@ class Game{
                 console.log(turn)
                 this.onTurn(index, turn)
             })
-            player.on('username', (name) => {
-                console.log(name)
-                this.userNames[index] = name
-            })
         })
     }
 
     sendMsgToPlayer(playerIndex, msg){
         this.player[playerIndex].emit('message', msg)
+    }
+
+    sendMsgToAll(msg){
+        this.players.forEach(player=>{
+            player.emit("message", msg)
+        })
     }
 
     sendToGameBox(playerIndex, msg) {
@@ -38,12 +41,6 @@ class Game{
         })
     }
 
-    sendMsgToAll(msg){
-        this.players.forEach(player=>{
-            player.emit("message", msg)
-        })
-    }
-
     onTurn(playerIndex, turn){
         if(this.turns[playerIndex] === null){
             this.turns[playerIndex]=turn;
@@ -59,14 +56,13 @@ class Game{
             this.checkIsGameOver();
         }
         else{
-            this.sendToGameBox(playerIndex, `You already select turn`)
+            this.sendToGameBox(playerIndex, `You already select turn`);
         }
     }
 
     checkIsGameOver(){
-        let turns = this.turns
+        let turns = this.turns;
         if(turns[0] && turns[1]){
-            console.log(turns[0], turns[1])
             this.sendResultToGameBox(`Game over: <i style="color: var(--${turns[0]}); font-size:25px; -webkit-text-stroke: 1px black !important;" class="fas fa-hand-${turns[0]}"></i> : <i style="color: var(--${turns[1]}); font-size:25px; -webkit-text-stroke: 1px black !important;" class="fas fa-hand-${turns[1]}"></i>`)
             this.getWinner()
             this.turns = [null, null]
@@ -86,17 +82,28 @@ class Game{
                 break;
             case 1:
                 this.sendMsgOnEndGame(this.players[0], this.players[1])
-                this.addScore('prvi')
+                this.score[0] +=1;
+                this.score[1] +=0 
                 //dodaj jedan poen za prvog igraca
                 break;
             case 2:
                 this.sendMsgOnEndGame(this.players[1], this.players[0])
-                console.log('sok')
-                this.addScore('drugi')
+                this.score[0] +=0;
+                this.score[1] +=1 
                 //dodaj jedan poen za drugog igraca
                 break;
-        }
+            }
+                
+        this.sendOpponentScore([this.score[1], this.score[0]])
+        this.sendUserScore([this.score[0], this.score[1]])
+    }
 
+    sendUserScore(sc){
+        this.players[0].emit('score', sc)
+    }
+    
+    sendOpponentScore(sc){
+        this.players[1].emit('score', sc)
     }
 
     sendMsgOnEndGame(winner, loser){

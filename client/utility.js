@@ -49,15 +49,10 @@ export const writeNewTurn = (turn) => {
 
 };
 
-let userScore = 0;
-let opponentScore = 0;
-export const addScoreToUI = (score)=>{
-    if (score === 'prvi'){
-        userScore += 1;
-        document.getElementById('user-sc').innerHTML = userScore;
-    }
-    else if (score === 'drugi'){
-        opponentScore += 1;
-        document.getElementById('opponent-sc').innerHTML = opponentScore;
-    }
+// **************/ UpdateUIScore
+export const addScoreToUI = scoreArray =>{
+    
+    document.getElementById('user-sc').innerHTML = scoreArray[0];
+    document.getElementById('opponent-sc').innerHTML = scoreArray[1];
+
 }
